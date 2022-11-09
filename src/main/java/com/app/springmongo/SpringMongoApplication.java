@@ -1,13 +1,13 @@
-package com.app.springapp;
+package com.app.springmongo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringAppApplication {
+public class SpringMongoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringAppApplication.class, args);
+        SpringApplication.run(SpringMongoApplication.class, args);
     }
 
 }
