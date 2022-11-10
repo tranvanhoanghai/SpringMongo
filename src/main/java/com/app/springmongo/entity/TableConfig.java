@@ -24,14 +24,14 @@ public class TableConfig {
     private String tableId;
 
     @Field
-    private List configJson;
+    private List tableConfig;
 
     @Override
     public String toString() {
         return "TableConfig{" +
                 "id='" + _id + '\'' +
                 ", tableId='" + tableId + '\'' +
-                ", configJson=" + configJson +
+                ", configJson=" + tableConfig +
                 '}';
     }
 }

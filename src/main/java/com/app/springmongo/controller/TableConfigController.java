@@ -20,7 +20,6 @@ public class TableConfigController {
 
     @GetMapping("/table-config")
     public ResponseEntity<List<TableConfig>> getAllTutorials() {
-        List<Test> test = new ArrayList<>();
         try {
             tableConfigRepo.findAll();
             return new ResponseEntity<>(tableConfigRepo.findAll(), HttpStatus.OK);
@@ -31,14 +30,12 @@ public class TableConfigController {
 
     @GetMapping("/table-config/{id}")
     public ResponseEntity<List<TableConfig>> getTutorials(@PathVariable("id") String id) {
-//        List<Test> test = new ArrayList<>();
         Optional<TableConfig> tutorialData = Optional.ofNullable(tableConfigRepo.findByTableId(id));
 
         if (tutorialData.isPresent()) {
             return new ResponseEntity<>(tableConfigRepo.findAll(), HttpStatus.OK);
         } else {
-            System.out.println(tutorialData);
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
     }
 
@@ -46,11 +43,11 @@ public class TableConfigController {
     public ResponseEntity<TableConfig> save(@RequestBody TableConfig tableConfig) {
         System.out.println(tableConfig.getTableId());
         Optional<TableConfig> tutorialData = Optional.ofNullable(tableConfigRepo.findByTableId(tableConfig.getTableId()));
-        System.out.println(tutorialData);
+
 
         if (tutorialData.isPresent()) {
             TableConfig _tutorial = tutorialData.get();
-            _tutorial.setConfigJson(tableConfig.getConfigJson());
+            _tutorial.setTableConfig(tableConfig.getTableConfig());
             return new ResponseEntity<>(tableConfigRepo.save(_tutorial), HttpStatus.OK);
         } else {
             TableConfig _tableConfig = tableConfigRepo.save(tableConfig);
@@ -66,7 +63,7 @@ public class TableConfigController {
 
         if (tutorialData.isPresent()) {
             TableConfig _tutorial = tutorialData.get();
-            _tutorial.setConfigJson(tableConfig.getConfigJson());
+            _tutorial.setTableConfig(tableConfig.getTableConfig());
             return new ResponseEntity<>(tableConfigRepo.save(_tutorial), HttpStatus.OK);
         } else {
             TableConfig _tableConfig = tableConfigRepo.save(tableConfig);
