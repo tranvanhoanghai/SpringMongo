@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -15,10 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TableConfig {
-    @Id
-    @Field("_id")
-    private String _id;
+public class TableConfig extends BaseEntity {
 
     @Field
     private String tableId;
@@ -29,9 +25,8 @@ public class TableConfig {
     @Override
     public String toString() {
         return "TableConfig{" +
-                "id='" + _id + '\'' +
-                ", tableId='" + tableId + '\'' +
-                ", configJson=" + tableConfig +
+                "tableId='" + tableId + '\n' +
+                ", tableConfig=" + tableConfig + '\n' +
                 '}';
     }
 }

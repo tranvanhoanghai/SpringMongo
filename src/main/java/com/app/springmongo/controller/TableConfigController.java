@@ -44,10 +44,14 @@ public class TableConfigController {
         System.out.println(tableConfig.getTableId());
         Optional<TableConfig> tutorialData = Optional.ofNullable(tableConfigRepo.findByTableId(tableConfig.getTableId()));
 
+        System.out.println(tutorialData);
 
         if (tutorialData.isPresent()) {
             TableConfig _tutorial = tutorialData.get();
+            System.out.println(_tutorial);
+
             _tutorial.setTableConfig(tableConfig.getTableConfig());
+
             return new ResponseEntity<>(tableConfigRepo.save(_tutorial), HttpStatus.OK);
         } else {
             TableConfig _tableConfig = tableConfigRepo.save(tableConfig);
