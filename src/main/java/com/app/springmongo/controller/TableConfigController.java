@@ -1,8 +1,6 @@
 package com.app.springmongo.controller;
 
 import com.app.springmongo.entity.TableConfig;
-import com.app.springmongo.entity.Test;
-import com.app.springmongo.repository.TableConfigRepo;
 import com.app.springmongo.service.TableConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,9 +14,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class TableConfigController {
-    @Autowired
-    private TableConfigRepo tableConfigRepo;
-
     @Autowired
     private TableConfigService tableConfigService;
 
@@ -52,7 +47,7 @@ public class TableConfigController {
                 _tableConfig.setTableConfig(tableConfig.getTableConfig());
                 return new ResponseEntity<>(tableConfigService.saveTableConfig(_tableConfig), HttpStatus.OK);
             } else {
-                TableConfig _tableConfig = tableConfigRepo.save(tableConfig);
+                TableConfig _tableConfig = tableConfigService.saveTableConfig(tableConfig);
                 return new ResponseEntity<>(_tableConfig, HttpStatus.CREATED);
             }
         } catch (Exception e) {
