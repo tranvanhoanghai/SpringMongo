@@ -20,7 +20,6 @@ public class TableConfigController {
     @GetMapping("/table-config")
     public ResponseEntity<List<TableConfig>> getAllTableConfig() {
         try {
-
             List<TableConfig> tableConfigs = new ArrayList<>(tableConfigService.getAllTableConfig());
             return new ResponseEntity<>(tableConfigs, HttpStatus.OK);
         } catch (Exception e) {
@@ -40,8 +39,9 @@ public class TableConfigController {
 
     @PostMapping("/table-config")
     public ResponseEntity<TableConfig> saveTableConfig(@RequestBody TableConfig tableConfig) {
-        Optional<TableConfig> tableConfigOptional = tableConfigService.getTableConfigById(tableConfig.getTableId());
         try {
+            Optional<TableConfig> tableConfigOptional = tableConfigService.getTableConfigById(tableConfig.getTableId());
+
             if (tableConfigOptional.isPresent()) {
                 TableConfig _tableConfig = tableConfigOptional.get();
                 _tableConfig.setTableConfig(tableConfig.getTableConfig());

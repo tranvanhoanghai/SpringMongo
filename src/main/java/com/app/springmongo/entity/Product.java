@@ -22,13 +22,13 @@ public class Product extends BaseEntity {
     private String id_product_type;
 
     @Field
-    private String img;
+    private String image;
 
     @Field
     private String description;
 
     @Field
-    private Integer import_price;
+    private Integer importPrice;
 
     @Field
     private Integer price;

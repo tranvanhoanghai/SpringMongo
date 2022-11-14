@@ -17,5 +17,8 @@ public class ProductType {
     private String name;
 
     @Field
-    private Integer status;
+    private String value;
+
+    @Field
+    private String status;
 }
