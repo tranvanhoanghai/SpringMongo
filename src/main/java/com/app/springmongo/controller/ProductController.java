@@ -74,11 +74,6 @@ public class ProductController {
                     System.out.println("imagesPath" + " " + imagesPath);
                     Files.copy(inputStream, imagesPath, StandardCopyOption.REPLACE_EXISTING);
 //                    FileCopyUtils.copy(bytes, new File(String.valueOf(imagesPath)));
-
-
-//                    try (OutputStream os = Files.newOutputStream(images)) {
-//                        os.write(bytes);
-//                    }
                 } catch (IOException e) {
                     try {
                         throw new IOException("Could not save image file: " + fileName, e);
