@@ -48,7 +48,7 @@ public class ProductController {
     @RequestMapping(path = "/product", method = RequestMethod.POST, consumes = {"multipart/form-data"})
     public ResponseEntity<Product> save(@RequestPart("user") ProductRequest productRequest, @RequestPart("images") MultipartFile[] files) {
         try {
-            Path staticPath = Paths.get("src\\main\\resources\\static\\");
+            Path staticPath = Paths.get("src/main/resources/static");
             Path imagePath = Paths.get("images");
 
             if (!Files.exists(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath))) {
