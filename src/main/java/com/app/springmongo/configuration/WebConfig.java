@@ -16,14 +16,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         exposeDirectory("images", registry);
         registry.addResourceHandler(
                         "/resources/**",
-//                        "/static/**",
                         "/webjars/**",
                         "/images/**",
                         "/css/**",
                         "/js/**")
                 .addResourceLocations(
                         "/resources/",
-//                        "/app/src/main/resources/static/images/",
                         "classpath:/META-INF/resources/webjars/",
                         "classpath:/static/images/",
                         "classpath:/static/css/",
