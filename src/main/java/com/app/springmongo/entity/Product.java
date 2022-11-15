@@ -19,10 +19,10 @@ public class Product extends BaseEntity {
     private String name;
 
     @Field
-    private String id_product_type;
+    private String productType;
 
     @Field
-    private String image;
+    private List image;
 
     @Field
     private String description;
@@ -35,45 +35,5 @@ public class Product extends BaseEntity {
 
     @Field
     private Integer sale;
-
-    public Product(ProductBuilder productBuilder) {
-        this.name = productBuilder.name;
-        this.description = productBuilder.description;
-        this.id_product_type = productBuilder.id_product_type;
-        this.importPrice = productBuilder.importPrice;
-        this.price = productBuilder.price;
-        this.image = productBuilder.image;
-        this.sale = productBuilder.sale;
-    }
-
-
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class ProductBuilder {
-        @Field
-        private String name;
-        @Field
-        private String id_product_type;
-
-        @Field
-        private String image;
-
-        @Field
-        private String description;
-
-        @Field
-        private Integer importPrice;
-
-        @Field
-        private Integer price;
-
-        @Field
-        private Integer sale;
-
-
-        public Product build() {
-            return new Product(this);
-        }
-    }
 
 }
