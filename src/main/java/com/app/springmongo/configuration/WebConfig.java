@@ -33,10 +33,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         Path uploadDir = staticPath.resolve(Paths.get(dirName));
 
         String uploadPath = uploadDir.toFile().getAbsolutePath();
-        System.out.println(uploadPath);
+        System.out.println("Upload Path" + " " + uploadPath);
         if (dirName.startsWith("../")) dirName = dirName.replace("../", "");
 
-        registry.addResourceHandler("/" + dirName + "/**").addResourceLocations("file:/"+ uploadPath + "/");
+        registry.addResourceHandler("/" + dirName + "/**").addResourceLocations("file:/" + uploadPath + "/");
 
     }
 }
