@@ -6,14 +6,19 @@ import com.app.springmongo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 @RestController
@@ -46,7 +51,7 @@ public class ProductController {
 
 
     @RequestMapping(path = "/product", method = RequestMethod.POST, consumes = {"multipart/form-data"})
-    public ResponseEntity<Product> save(@RequestPart("user") ProductRequest productRequest, @RequestPart("images") MultipartFile[] files) {
+    public ResponseEntity<Product> save(@RequestPart("user") ProductRequest productRequest, @RequestPart("images") MultipartFile[] files) throws IOException {
         try {
             Path staticPath = Paths.get("src/main/resources/static");
             Path imagePath = Paths.get("images");
@@ -60,17 +65,26 @@ public class ProductController {
             // read and write the file to the local folder
             Arrays.stream(files).forEach(file -> {
                 byte[] bytes = new byte[0];
-                try {
+                String fileName = file.getOriginalFilename();
+
+                try (InputStream inputStream = file.getInputStream()) {
                     bytes = file.getBytes();
                     fileNames.add(file.getOriginalFilename());
-                    Path images = CURRENT_FOLDER.resolve(staticPath).resolve(imagePath).resolve(file.getOriginalFilename());
-                    System.out.println(images);
+                    Path imagesPath = CURRENT_FOLDER.resolve(staticPath).resolve(imagePath).resolve(file.getOriginalFilename());
+                    System.out.println("imagesPath" + " " + imagesPath);
+//                    Files.copy(inputStream, imagesPath, StandardCopyOption.REPLACE_EXISTING);
+                    FileCopyUtils.copy(bytes, new File(String.valueOf(imagesPath)));
 
-                    try (OutputStream os = Files.newOutputStream(images)) {
-                        os.write(bytes);
-                    }
+
+//                    try (OutputStream os = Files.newOutputStream(images)) {
+//                        os.write(bytes);
+//                    }
                 } catch (IOException e) {
-                    System.out.println(e);
+                    try {
+                        throw new IOException("Could not save image file: " + fileName, e);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             });
 
