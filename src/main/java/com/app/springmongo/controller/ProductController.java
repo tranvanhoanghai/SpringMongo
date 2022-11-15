@@ -58,7 +58,7 @@ public class ProductController {
             List<String> fileNames = new ArrayList<>();
 
             // read and write the file to the local folder
-            Arrays.asList(files).stream().forEach(file -> {
+            Arrays.stream(files).forEach(file -> {
                 byte[] bytes = new byte[0];
                 try {
                     bytes = file.getBytes();

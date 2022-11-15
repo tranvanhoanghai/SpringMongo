@@ -27,9 +27,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     private void exposeDirectory(String dirName, ResourceHandlerRegistry registry) {
-        Path uploadDir = Paths.get(dirName);
-        String uploadPath = uploadDir.toFile().getAbsolutePath();
+        Path staticPath = Paths.get("src\\main\\resources\\static\\");
+        Path uploadDir = staticPath.resolve(Paths.get(dirName));
 
+        String uploadPath = uploadDir.toFile().getAbsolutePath();
+        System.out.println(uploadPath);
         if (dirName.startsWith("../")) dirName = dirName.replace("../", "");
 
         registry.addResourceHandler("/" + dirName + "/**").addResourceLocations("file:/"+ uploadPath + "/");
