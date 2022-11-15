@@ -72,8 +72,8 @@ public class ProductController {
                     fileNames.add(file.getOriginalFilename());
                     Path imagesPath = CURRENT_FOLDER.resolve(staticPath).resolve(imagePath).resolve(file.getOriginalFilename());
                     System.out.println("imagesPath" + " " + imagesPath);
-//                    Files.copy(inputStream, imagesPath, StandardCopyOption.REPLACE_EXISTING);
-                    FileCopyUtils.copy(bytes, new File(String.valueOf(imagesPath)));
+                    Files.copy(inputStream, imagesPath, StandardCopyOption.REPLACE_EXISTING);
+//                    FileCopyUtils.copy(bytes, new File(String.valueOf(imagesPath)));
 
 
 //                    try (OutputStream os = Files.newOutputStream(images)) {
