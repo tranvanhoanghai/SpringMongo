@@ -16,12 +16,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         exposeDirectory("images", registry);
         registry.addResourceHandler(
                         "/resources/**",
+                        "/images/**",
                         "/webjars/**",
                         "/images/**",
                         "/css/**",
                         "/js/**")
                 .addResourceLocations(
                         "/resources/",
+                        "/WEB-INF/images/",
                         "classpath:/META-INF/resources/webjars/",
                         "classpath:/static/images/",
                         "classpath:/static/css/",
@@ -29,7 +31,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     private void exposeDirectory(String dirName, ResourceHandlerRegistry registry) {
-        Path staticPath = Paths.get("src/main/resources/static");
+        Path staticPath = Paths.get("/src/main/webapp/WEB-INF");
         Path uploadDir = staticPath.resolve(Paths.get(dirName));
 
         String uploadPath = uploadDir.toFile().getAbsolutePath();
