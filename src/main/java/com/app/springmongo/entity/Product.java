@@ -34,6 +34,9 @@ public class Product extends BaseEntity {
     private Integer price;
 
     @Field
-    private Integer sale;
+    private String discountBy;
+
+    @Field
+    private Integer discountValue;
 
 }

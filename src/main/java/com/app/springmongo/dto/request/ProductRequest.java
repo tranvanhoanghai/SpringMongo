@@ -14,5 +14,6 @@ public class ProductRequest implements Serializable {
     private String description;
     private Integer importPrice;
     private Integer price;
-    private Integer sale;
+    private String discountBy;
+    private Integer discountValue;
 }

@@ -80,7 +80,8 @@ public class ProductController {
             product.setPrice(productRequest.getPrice());
             product.setImportPrice(productRequest.getImportPrice());
             product.setProductType(productRequest.getProductType());
-            product.setSale(productRequest.getSale());
+            product.setDiscountBy(productRequest.getDiscountBy());
+            product.setDiscountValue(productRequest.getDiscountValue());
 
             return new ResponseEntity<>(productService.save(product), HttpStatus.OK);
         } catch (
