@@ -64,6 +64,7 @@ public class ProductController {
                     bytes = file.getBytes();
                     fileNames.add(file.getOriginalFilename());
                     Path images = CURRENT_FOLDER.resolve(staticPath).resolve(imagePath).resolve(file.getOriginalFilename());
+                    System.out.println(images);
 
                     try (OutputStream os = Files.newOutputStream(images)) {
                         os.write(bytes);
