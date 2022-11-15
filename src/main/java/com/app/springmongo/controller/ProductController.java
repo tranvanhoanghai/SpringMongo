@@ -53,7 +53,7 @@ public class ProductController {
     @RequestMapping(path = "/product", method = RequestMethod.POST, consumes = {"multipart/form-data"})
     public ResponseEntity<Product> save(@RequestPart("user") ProductRequest productRequest, @RequestPart("images") MultipartFile[] files) throws IOException {
         try {
-            Path staticPath = Paths.get("/src/main/webapp/WEB-INF");
+            Path staticPath = Paths.get("src/main/webapp/WEB-INF");
             Path imagePath = Paths.get("images");
 
             if (!Files.exists(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath))) {

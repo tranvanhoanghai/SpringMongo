@@ -31,7 +31,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     private void exposeDirectory(String dirName, ResourceHandlerRegistry registry) {
-        Path staticPath = Paths.get("/src/main/webapp/WEB-INF");
+        Path staticPath = Paths.get("src/main/webapp/WEB-INF");
         Path uploadDir = staticPath.resolve(Paths.get(dirName));
 
         String uploadPath = uploadDir.toFile().getAbsolutePath();
